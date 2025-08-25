@@ -1,0 +1,80 @@
+.page-content {
+	padding-top: 64px;
+	/* explicit padding; not shorthand */
+	min-height: 100vh;
+	background-color: #0a0c10;
+	color: #e7e7e7;
+
+	/* layout */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+
+	padding-left: 16px;
+	padding-right: 16px;
+	padding-bottom: 32px;
+	box-sizing: border-box;
+}
+
+.site-footer {
+	background-color: #0f1115;
+	color: #bfc3c8;
+
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: rgba(255, 255, 255, 0.12);
+}
+
+.footer-inner {
+	max-width: 1100px;
+	margin-left: auto;
+	margin-right: auto;
+
+	padding-top: 14px;
+	padding-bottom: 14px;
+	padding-left: 16px;
+	padding-right: 16px;
+
+	font-size: 13px;
+	letter-spacing: 0.3px;
+}
+
+/* Variable font (preferred by modern browsers) */
+@font-face {
+	font-family: "Clash Grotesk";
+	src: url("./assets/fonts/clash-grotesk/ClashGrotesk-Variable.woff2") format("woff2"),
+		url("./assets/fonts/clash-grotesk/ClashGrotesk-Variable.woff") format("woff");
+	font-weight: 200 700;
+	/* variable range */
+	font-style: normal;
+	font-display: swap;
+}
+
+/* Optional static fallbacks for older browsers or fine control */
+@font-face {
+	font-family: "Clash Grotesk";
+	src: url("./assets/fonts/clash-grotesk/ClashGrotesk-Regular.woff2") format("woff2"),
+		url("./assets/fonts/clash-grotesk/ClashGrotesk-Regular.woff") format("woff");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Clash Grotesk";
+	src: url("./assets/fonts/clash-grotesk/ClashGrotesk-Medium.woff2") format("woff2"),
+		url("./assets/fonts/clash-grotesk/ClashGrotesk-Medium.woff") format("woff");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Clash Grotesk";
+	src: url("./assets/fonts/clash-grotesk/ClashGrotesk-Semibold.woff2") format("woff2"),
+		url("./assets/fonts/clash-grotesk/ClashGrotesk-Semibold.woff") format("woff");
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
