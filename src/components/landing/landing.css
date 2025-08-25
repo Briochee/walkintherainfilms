@@ -1,0 +1,21 @@
+.landing-wrap {
+    width: 100%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 32px;
+}
+
+.landing-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-top: 0px;
+    margin-bottom: 8px;
+}
+
+.landing-tagline {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
