@@ -1,9 +1,9 @@
-name: Deploy to GitHub Pages (deploy branch)
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
-      - deploy   # only run when you push to 'deploy' branch
+      - deploy
   workflow_dispatch:
 
 permissions:
