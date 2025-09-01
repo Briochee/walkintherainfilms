@@ -1,11 +1,160 @@
+:root {
+	/* okLab with hex fallbacks for wider support */
+	--clr-custom-a0-fallback: #b03c7a;
+	--clr-custom-a10-fallback: #e05a87;
+	--clr-custom-a20-fallback: #e87e82;
+
+	--clr-custom-a0: oklab(45% 0.161 0.088);
+	--clr-custom-a10: oklab(60.9% 0.228 0.083);
+	--clr-custom-a20: oklab(64.4% 0.254 0.029);
+
+	/* typography + rhythm */
+	--font-sans: "Satoshi", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+	--radius: 12px;
+	--gap: 12px;
+
+	/* light palette */
+	--light-primary-a0: #ff0a74;
+	--light-primary-a10: #f23375;
+	--light-primary-a20: #e64676;
+	--light-primary-a30: #d95478;
+	--light-primary-a40: #cb5f79;
+	--light-primary-a50: #be687a;
+
+	/* light surfaces (neutral) */
+	--light-surface-a0: #fafafa;
+	--light-surface-a10: #f0f0f0;
+	--light-surface-a20: #e0e0e0;
+	--light-surface-a30: #d0d0d0;
+	--light-surface-a40: #bcbcbc;
+	--light-surface-a50: #a8a8a8;
+
+	/* light tonal surfaces (lilac-gray) */
+	--light-surface-tonal-a0: #fdf3f7;
+	--light-surface-tonal-a10: #f8e7f0;
+	--light-surface-tonal-a20: #f1d9e7;
+	--light-surface-tonal-a30: #e6cadc;
+	--light-surface-tonal-a40: #d8bcd1;
+	--light-surface-tonal-a50: #caaec6;
+
+	/* dark palette */
+	--dark-primary-a0: #ff0a74;
+	--dark-primary-a10: #ff4682;
+	--dark-primary-a20: #ff6591;
+	--dark-primary-a30: #ff7f9f;
+	--dark-primary-a40: #ff96af;
+	--dark-primary-a50: #ffacbe;
+
+	--dark-surface-a0: #121212;
+	--dark-surface-a10: #282828;
+	--dark-surface-a20: #3f3f3f;
+	--dark-surface-a30: #575757;
+	--dark-surface-a40: #717171;
+	--dark-surface-a50: #8b8b8b;
+
+	--dark-surface-tonal-a0: #27181b;
+	--dark-surface-tonal-a10: #3c2d30;
+	--dark-surface-tonal-a20: #514446;
+	--dark-surface-tonal-a30: #685c5e;
+	--dark-surface-tonal-a40: #807577;
+	--dark-surface-tonal-a50: #988f90;
+
+	/* text defaults (set concrete values per theme below) */
+	--text: #0a0a0a;
+	--text-on-primary: #ffffff;
+
+	/* focus + borders */
+	--focus-ring: #5b9aff;
+	--border: color-mix(in oklab, var(--text) 12%, transparent);
+}
+
+/* Default to LIGHT when no data-theme is set */
+:root,
+:root[data-theme="light"] {
+	color-scheme: light;
+
+	--primary-a0: var(--light-primary-a0);
+	--primary-a10: var(--light-primary-a10);
+	--primary-a20: var(--light-primary-a20);
+	--primary-a30: var(--light-primary-a30);
+	--primary-a40: var(--light-primary-a40);
+	--primary-a50: var(--light-primary-a50);
+
+	--surface-a0: var(--light-surface-a0);
+	--surface-a10: var(--light-surface-a10);
+	--surface-a20: var(--light-surface-a20);
+	--surface-a30: var(--light-surface-a30);
+	--surface-a40: var(--light-surface-a40);
+	--surface-a50: var(--light-surface-a50);
+
+	--surface-tonal-a0: var(--light-surface-tonal-a0);
+	--surface-tonal-a10: var(--light-surface-tonal-a10);
+	--surface-tonal-a20: var(--light-surface-tonal-a20);
+	--surface-tonal-a30: var(--light-surface-tonal-a30);
+	--surface-tonal-a40: var(--light-surface-tonal-a40);
+	--surface-tonal-a50: var(--light-surface-tonal-a50);
+
+	--text: #0a0a0a;
+	--text-on-primary: #ffffff;
+}
+
+/* DARK theme mapping */
+:root[data-theme="dark"] {
+	color-scheme: dark;
+
+	--primary-a0: var(--dark-primary-a0);
+	--primary-a10: var(--dark-primary-a10);
+	--primary-a20: var(--dark-primary-a20);
+	--primary-a30: var(--dark-primary-a30);
+	--primary-a40: var(--dark-primary-a40);
+	--primary-a50: var(--dark-primary-a50);
+
+	--surface-a0: var(--dark-surface-a0);
+	--surface-a10: var(--dark-surface-a10);
+	--surface-a20: var(--dark-surface-a20);
+	--surface-a30: var(--dark-surface-a30);
+	--surface-a40: var(--dark-surface-a40);
+	--surface-a50: var(--dark-surface-a50);
+
+	--surface-tonal-a0: var(--dark-surface-tonal-a0);
+	--surface-tonal-a10: var(--dark-surface-tonal-a10);
+	--surface-tonal-a20: var(--dark-surface-tonal-a20);
+	--surface-tonal-a30: var(--dark-surface-tonal-a30);
+	--surface-tonal-a40: var(--dark-surface-tonal-a40);
+	--surface-tonal-a50: var(--dark-surface-tonal-a50);
+
+	--text: #e7e7e7;
+	--text-on-primary: #0a0a0a;
+}
+
+html {
+	scroll-behavior: smooth;
+	overscroll-behavior: none;
+}
+
+html,
+body,
+#root {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background-color: var(--surface-a0);
+	color: var(--text);
+	font-family: var(--font-sans);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Page content container */
 .page-content {
 	padding-top: 64px;
-	/* explicit padding; not shorthand */
-	min-height: 100vh;
-	background-color: #0a0c10;
-	color: #e7e7e7;
+	min-height: calc(100vh - 58px);
+	background-color: var(--surface-tonal-a10);
+	color: var(--text);
 
-	/* layout */
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -13,17 +162,16 @@
 
 	padding-left: 16px;
 	padding-right: 16px;
-	padding-bottom: 32px;
 	box-sizing: border-box;
 }
 
 .site-footer {
-	background-color: #0f1115;
-	color: #bfc3c8;
+	background-color: var(--surface-tonal-a0);
+	color: var(--text);
 
 	border-top-width: 1px;
 	border-top-style: solid;
-	border-top-color: rgba(255, 255, 255, 0.12);
+	border-top-color: var(--surface-a30);
 }
 
 .footer-inner {
@@ -38,43 +186,161 @@
 
 	font-size: 13px;
 	letter-spacing: 0.3px;
+
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
 }
 
-/* Variable font (preferred by modern browsers) */
+.footer-left {
+	color: var(--text);
+}
+
+.footer-right {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.theme-toggle {
+	display: inline-flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+
+	background-color: transparent;
+	border-width: 0px;
+
+	cursor: pointer;
+	color: var(--text);
+	gap: 0px;
+	/* explicit */
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.toggle-track {
+	position: relative;
+
+	width: 46px;
+	height: 26px;
+
+	background-color: var(--surface-tonal-a10);
+	border-width: 1px;
+	border-style: solid;
+	border-color: var(--surface-tonal-a20);
+	border-radius: 9999px;
+
+	margin-right: 8px;
+	box-shadow: 0px 0px 0px 0px transparent;
+
+	transition-property: background-color, border-color;
+	transition-duration: 160ms;
+	transition-timing-function: ease;
+}
+
+.toggle-thumb {
+	position: absolute;
+	top: 2px;
+	left: 2px;
+
+	width: 20px;
+	height: 20px;
+
+	background-color: var(--surface-a0);
+	border-width: 1px;
+	border-style: solid;
+	border-color: var(--surface-tonal-a20);
+	border-radius: 9999px;
+
+	transition-property: left, background-color, border-color, box-shadow;
+	transition-duration: 160ms;
+	transition-timing-function: ease;
+}
+
+/* Light state label */
+.toggle-label {
+	font-size: 14px;
+	color: var(--text);
+}
+
+/* When dark is active, move thumb right and add primary accent ring */
+.thumb-dark {
+	left: 22px;
+	background-color: var(--surface-a0);
+	border-color: var(--primary-a20);
+	box-shadow: 0px 0px 0px 2px var(--primary-a20) inset;
+}
+
+.theme-toggle:hover .toggle-track {
+	background-color: var(--surface-tonal-a20);
+	border-color: var(--surface-tonal-a30);
+}
+
+.theme-toggle:hover .toggle-thumb {
+	border-color: var(--surface-tonal-a30);
+}
+
 @font-face {
-	font-family: "Clash Grotesk";
-	src: url("./assets/fonts/clash-grotesk/ClashGrotesk-Variable.woff2") format("woff2"),
-		url("./assets/fonts/clash-grotesk/ClashGrotesk-Variable.woff") format("woff");
-	font-weight: 200 700;
-	/* variable range */
+	font-family: "Satoshi";
+	src: url("./assets/fonts/shatoshi/Satoshi-Variable.woff2") format("woff2"),
+		url("./assets/fonts/shatoshi/Satoshi-Variable.woff") format("woff"),
+		url("./assets/fonts/shatoshi/Satoshi-Variable.ttf") format("truetype");
+	font-weight: 200 900;
 	font-style: normal;
 	font-display: swap;
 }
 
-/* Optional static fallbacks for older browsers or fine control */
 @font-face {
-	font-family: "Clash Grotesk";
-	src: url("./assets/fonts/clash-grotesk/ClashGrotesk-Regular.woff2") format("woff2"),
-		url("./assets/fonts/clash-grotesk/ClashGrotesk-Regular.woff") format("woff");
+	font-family: "Satoshi";
+	src: url("./assets/fonts/shatoshi/Satoshi-VariableItalic.woff2") format("woff2"),
+		url("./assets/fonts/shatoshi/Satoshi-VariableItalic.woff") format("woff"),
+		url("./assets/fonts/shatoshi/Satoshi-VariableItalic.ttf") format("truetype");
+	font-weight: 200 900;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Satoshi";
+	src: url("./assets/fonts/shatoshi/Satoshi-Regular.woff2") format("woff2"),
+		url("./assets/fonts/shatoshi/Satoshi-Regular.woff") format("woff"),
+		url("./assets/fonts/shatoshi/Satoshi-Regular.ttf") format("truetype");
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
 }
 
 @font-face {
-	font-family: "Clash Grotesk";
-	src: url("./assets/fonts/clash-grotesk/ClashGrotesk-Medium.woff2") format("woff2"),
-		url("./assets/fonts/clash-grotesk/ClashGrotesk-Medium.woff") format("woff");
+	font-family: "Satoshi";
+	src: url("./assets/fonts/shatoshi/Satoshi-Medium.woff2") format("woff2"),
+		url("./assets/fonts/shatoshi/Satoshi-Medium.woff") format("woff"),
+		url("./assets/fonts/shatoshi/Satoshi-Medium.ttf") format("truetype");
 	font-weight: 500;
 	font-style: normal;
 	font-display: swap;
 }
 
 @font-face {
-	font-family: "Clash Grotesk";
-	src: url("./assets/fonts/clash-grotesk/ClashGrotesk-Semibold.woff2") format("woff2"),
-		url("./assets/fonts/clash-grotesk/ClashGrotesk-Semibold.woff") format("woff");
-	font-weight: 600;
+	font-family: "Satoshi";
+	src: url("./assets/fonts/shatoshi/Satoshi-Bold.woff2") format("woff2"),
+		url("./assets/fonts/shatoshi/Satoshi-Bold.woff") format("woff"),
+		url("./assets/fonts/shatoshi/Satoshi-Bold.ttf") format("truetype");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Satoshi";
+	src: url("./assets/fonts/shatoshi/Satoshi-Black.woff2") format("woff2"),
+		url("./assets/fonts/shatoshi/Satoshi-Black.woff") format("woff"),
+		url("./assets/fonts/shatoshi/Satoshi-Black.ttf") format("truetype");
+	font-weight: 900;
 	font-style: normal;
 	font-display: swap;
 }
