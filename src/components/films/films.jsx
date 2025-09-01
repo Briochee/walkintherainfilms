@@ -5,7 +5,7 @@ import petronioThumb from "../../assets/images/FILM PAGE IMAGE Stephen_Petronio_
 import petronioInside from "../../assets/images/Inside image option 2_ Stephen uncropped.JPG";
 
 import dancerThumb from "../../assets/images/FILM PAGE IMAGE Dava Meg arms.jpg";
-import dancerTrailerPoster from "../../assets/images/ifthedancerdances.jpg";
+import dancerTrailerPoster from "../../assets/images/Ifthedancerdances.jpg";
 
 import historyThumb from "../../assets/images/FILM PAGE IMAGE_ Luis Hand on barre SHD__1602_2023-02-21-10-31-07.jpg";
 
