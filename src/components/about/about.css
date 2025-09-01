@@ -1,4 +1,4 @@
-.contact-wrap {
+.about-wrap {
     width: 100%;
     max-width: 900px;
 
@@ -6,8 +6,9 @@
     margin-right: auto;
     margin-top: 32px;
 
-    /* Background card feel using tonal surface */
+    /* Give the section a tonal background card feel */
     background-color: var(--surface-tonal-a0);
+
 
     border-radius: var(--radius);
 
@@ -19,7 +20,7 @@
     box-sizing: border-box;
 }
 
-.contact-title {
+.about-title {
     font-size: 28px;
     font-weight: 700;
 
@@ -28,7 +29,7 @@
 
     color: var(--text);
 
-    /* Primary accent underline */
+    /* Optional underline accent with primary */
     border-bottom-width: 2px;
     border-bottom-style: solid;
     border-bottom-color: var(--primary-a20);
@@ -36,27 +37,12 @@
     display: inline-block;
 }
 
-.contact-copy {
+.about-section {
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.5;
 
     margin-top: 0px;
     margin-bottom: 0px;
 
     color: var(--text);
-}
-
-/* Links follow primary accent rules */
-.contact-link {
-    color: var(--primary-a10);
-    text-decoration-line: underline;
-    text-underline-offset: 2px;
-}
-
-.contact-link:hover {
-    color: var(--primary-a20);
-}
-
-.contact-entry {
-    font-weight: 600;
 }
