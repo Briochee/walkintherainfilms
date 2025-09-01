@@ -1,0 +1,130 @@
+.updates-wrap {
+    width: 100%;
+    max-width: 900px;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 32px;
+
+    background-color: var(--surface-tonal-a0);
+
+    border-width: 0px;
+    border-style: none;
+    border-color: transparent;
+    border-radius: var(--radius);
+
+    padding-top: 24px;
+    padding-bottom: 24px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    box-sizing: border-box;
+}
+
+.updates-page-title {
+    font-size: 28px;
+    font-weight: 700;
+
+    margin-top: 0px;
+    margin-bottom: 16px;
+
+    color: var(--text);
+
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: var(--primary-a20);
+    padding-bottom: 4px;
+    display: inline-block;
+}
+
+.updates-list {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+
+    row-gap: 16px;
+}
+
+.updates-entry {
+    background-color: var(--surface-a10);
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--surface-tonal-a20);
+    border-radius: 12px;
+
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-left: 16px;
+    padding-right: 16px;
+
+    color: var(--text);
+    transition-property: background-color, border-color, box-shadow;
+    transition-duration: 150ms;
+    transition-timing-function: ease;
+}
+
+.updates-entry:focus-within {
+    box-shadow: 0px 0px 0px 2px var(--primary-a30);
+    outline-width: 0px;
+}
+
+.update-title {
+    font-size: 18px;
+    font-weight: 700;
+
+    margin-top: 0px;
+    margin-bottom: 6px;
+
+    color: var(--text);
+
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: var(--primary-a20);
+    padding-bottom: 2px;
+    display: inline-block;
+}
+
+.update-info {
+    font-size: 15px;
+
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+    color: var(--text);
+    font-weight: 500;
+}
+
+.update-tags {
+    margin-top: 8px;
+    margin-bottom: 0px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    font-size: 14px;
+    color: var(--text);
+}
+
+.update-tag {
+    display: inline-grid;
+    grid-template-columns: 1fr;
+}
+
+.update-tag-message {
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    color: color-mix(in oklab, var(--text), 25% transparent);
+}
+
+.update-tag-from {
+    font-weight: 700;
+}
+
+.update-tag-message,
+.update-tag-message {
+    width: fit-content;
+}

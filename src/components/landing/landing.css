@@ -1,21 +1,91 @@
-.landing-wrap {
-    width: 100%;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 32px;
+.landing-hero {
+    position: relative;
+    width: 100vw;
+    height: calc(100vh - 120px);
+    overflow: hidden;
 }
 
-.landing-title {
-    font-size: 28px;
+.landing-hero-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* cover full width */
+    background-position: center;
+    z-index: 0;
+}
+
+/* ===== default (dark mode assumed) ===== */
+.landing-hero::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+
+    background-image: linear-gradient(
+        to bottom,
+        rgba(20, 20, 20, 0.9) 25%,
+        rgba(20, 20, 20, 0.6) 50%,
+        rgba(20, 20, 20, 0.0) 100%
+    );
+    z-index: 1;
+}
+
+.landing-hero-title {
+    position: absolute;
+    top: 20px;
+    right: 48px;
+    margin: 0px;
+
+    font-size: clamp(28px, 15vw, 100px);
     font-weight: 700;
-    margin-top: 0px;
-    margin-bottom: 8px;
+
+    color: var(--text); /* will be light text in dark theme */
+    z-index: 2;
 }
 
-.landing-tagline {
-    font-size: 16px;
-    line-height: 1.6;
-    margin-top: 0px;
-    margin-bottom: 0px;
+/* ===== light mode overrides ===== */
+:root[data-theme="light"] .landing-hero::before {
+    background-image: linear-gradient(
+        to bottom,
+        color-mix(in oklab, var(--surface-tonal-a0) 60%, transparent) 10%,
+        color-mix(in oklab, var(--surface-tonal-a10) 20%, transparent) 50%,
+        transparent 100%
+    );
+}
+
+:root[data-theme="light"] .landing-hero-title {
+    color: var(--text);
+}
+
+/* title styling */
+.landing-hero-title {
+    position: absolute;
+    top: 20px;
+    right: 48px;
+    margin: 0px;
+
+    font-size: clamp(28px, 15vw, 100px);
+    font-weight: 700;
+
+    color: rgba(255, 255, 255, 0.9);
+    z-index: 2;
+}
+
+@media (max-width: 480px) {
+    .landing-hero-bg {
+        background-position: calc(40%) center;
+    }
+
+    .landing-hero-title {
+        right: 16px;
+        left: auto;
+        text-align: right;
+    }
 }
