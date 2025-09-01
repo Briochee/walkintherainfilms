@@ -14,16 +14,12 @@ const films = [
         id: "petronio",
         title: "Petronio",
         thumbSrc: petronioThumb,
-        /* tweak where the image sits inside 16:9:
-           examples: "center center", "40% 50%", "left center", "50% 35%" */
         thumbPosition: "50% 45%",   // adjustable per film
-        /* optional per-film aspect override (default 56.25% = 16:9) */
         thumbAspect: "56.25%",
         inside: {
             kind: "image",
             src: petronioInside,
             title: "Stephen in rehearsal",
-            /* also 16:9 frame for inside media */
             aspect: "56.25%",
             position: "center center"
         },
@@ -33,7 +29,7 @@ Choreographer Stephen Petronio burst onto the scene at the beginning of the AIDS
             {
                 label: "Cover photo: Stephen in corset — Chris Nash",
                 href: "https://www.chrisnashphoto.com",
-                after: " @chrisnash_dancephotography",
+                after: "@chrisnash_dancephotography",
             },
         ],
     },
@@ -46,8 +42,8 @@ Choreographer Stephen Petronio burst onto the scene at the beginning of the AIDS
         thumbAspect: "56.25%",
         inside: {
             kind: "embed",
-            src: "", /* put YouTube/Vimeo embed URL here */
-            title: "Trailer",
+            src: "https://player.vimeo.com/video/323308357?badge=0&autopause=0&player_id=0&app_id=58479",
+            title: "IF THE DANCER DANCES - Official Trailer (2019)",
             aspect: "56.25%",
             position: "center center"
         },
@@ -69,7 +65,7 @@ If a dance is not danced, it vanishes. If the Dancer Dances invites viewers into
         thumbAspect: "56.25%",
         inside: {
             kind: "video",
-            src: "", /* e.g. "/samples/history-sample.mp4" when ready */
+            src: "https://vimeo.com/850354180",
             title: "Film sample",
             aspect: "56.25%",
             position: "center center"
@@ -96,7 +92,6 @@ export default function Films() {
     return (
         <section className="films-wrap">
             <h1 className="films-title">Films</h1>
-            <p className="films-copy">A selection of our work will live here.</p>
 
             {/* COLUMN LIST */}
             <div className="films-list">
@@ -112,7 +107,6 @@ export default function Films() {
                             style={{
                                 backgroundImage: `url(${film.thumbSrc})`,
                                 backgroundPosition: film.thumbPosition || "center center",
-                                /* Standard 16:9 but adjustable per item */
                                 "--thumb-aspect": film.thumbAspect || "56.25%",
                             }}
                             role="img"
@@ -138,7 +132,6 @@ export default function Films() {
                         </div>
 
                         <div className="film-modal-media">
-                            {/* 16:9 aspect wrapper for everything inside */}
                             <div
                                 className="aspect-16x9"
                                 style={{

@@ -9,9 +9,6 @@
 
     background-color: var(--surface-tonal-a0);
 
-    border-width: 1px;
-    border-style: solid;
-    border-color: var(--surface-tonal-a20);
     border-radius: var(--radius);
 
     padding-top: 24px;
@@ -20,6 +17,7 @@
     padding-right: 20px;
 
     box-sizing: border-box;
+    margin-bottom: 20px;
 }
 
 .films-title {
@@ -301,7 +299,6 @@
     white-space: pre-line;
     margin-top: 0px;
     margin-bottom: 12px;
-    line-height: 1.7;
 }
 
 .film-credits {
