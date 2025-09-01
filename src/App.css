@@ -151,7 +151,7 @@ body {
 /* Page content container */
 .page-content {
 	padding-top: 64px;
-	min-height: calc(100vh - 58px);
+	min-height: calc(100vh);
 	background-color: var(--surface-tonal-a10);
 	color: var(--text);
 
