@@ -10,9 +10,18 @@ export default function Landing() {
         style={{ backgroundImage: `url(${heroUrl})` }}
         aria-hidden="true"
       />
+
       <h1 className="landing-hero-title">
-        Walk In the Rain Films
+        <div id="title-stack-one">Walk</div>
+        <div id="title-stack-two">in the</div>
+        <div id="title-stack-three">Rain Films</div>
       </h1>
+
+      <nav className="landing-nav" aria-label="Landing navigation">
+        <a className="landing-nav-link" href="#/films">Films</a>
+        <a className="landing-nav-link" href="#/updates">Updates</a>
+        <a className="landing-nav-link" href="#/about">About</a>
+      </nav>
     </section>
   );
 }

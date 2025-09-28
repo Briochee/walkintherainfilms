@@ -1,135 +1,83 @@
 :root {
-	/* okLab with hex fallbacks for wider support */
-	--clr-custom-a0-fallback: #b03c7a;
-	--clr-custom-a10-fallback: #e05a87;
-	--clr-custom-a20-fallback: #e87e82;
+	/* System intent */
+	color-scheme: light;
 
-	--clr-custom-a0: oklab(45% 0.161 0.088);
-	--clr-custom-a10: oklab(60.9% 0.228 0.083);
-	--clr-custom-a20: oklab(64.4% 0.254 0.029);
-
-	/* typography + rhythm */
-	--font-sans: "Satoshi", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+	/* Rhythm & typography */
+	--font-sans: "Open Sans", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
 	--radius: 12px;
 	--gap: 12px;
 
-	/* light palette */
-	--light-primary-a0: #ff0a74;
-	--light-primary-a10: #f23375;
-	--light-primary-a20: #e64676;
-	--light-primary-a30: #d95478;
-	--light-primary-a40: #cb5f79;
-	--light-primary-a50: #be687a;
+	/* === Monochrome scale (white → black) === */
+	--mono-0: #ffffff;
+	--mono-5: #f7f7f7;
+	--mono-10: #f0f0f0;
+	--mono-20: #e6e6e6;
+	--mono-30: #d9d9d9;
+	--mono-40: #cfcfcf;
+	--mono-50: #b8b8b8;
+	--mono-60: #9a9a9a;
+	--mono-70: #7a7a7a;
+	--mono-80: #5a5a5a;
+	--mono-90: #2a2a2a;
+	--mono-100: #0a0a0a;
 
-	/* light surfaces (neutral) */
-	--light-surface-a0: #fafafa;
-	--light-surface-a10: #f0f0f0;
-	--light-surface-a20: #e0e0e0;
-	--light-surface-a30: #d0d0d0;
-	--light-surface-a40: #bcbcbc;
-	--light-surface-a50: #a8a8a8;
+	--white: hsla(0, 0%, 100%, 1);
+	--powder-blue: hsla(219, 32%, 70%, 1);
+	--glaucous: hsla(219, 33%, 56%, 1);
+	--yinmn-blue: hsla(219, 48%, 41%, 1);
+	--marian-blue: hsla(219, 47%, 31%, 1);
+	--space-cadet: hsla(218, 48%, 20%, 1);
+	--black: hsla(0, 0%, 0%, 1);
 
-	/* light tonal surfaces (lilac-gray) */
-	--light-surface-tonal-a0: #fdf3f7;
-	--light-surface-tonal-a10: #f8e7f0;
-	--light-surface-tonal-a20: #f1d9e7;
-	--light-surface-tonal-a30: #e6cadc;
-	--light-surface-tonal-a40: #d8bcd1;
-	--light-surface-tonal-a50: #caaec6;
 
-	/* dark palette */
-	--dark-primary-a0: #ff0a74;
-	--dark-primary-a10: #ff4682;
-	--dark-primary-a20: #ff6591;
-	--dark-primary-a30: #ff7f9f;
-	--dark-primary-a40: #ff96af;
-	--dark-primary-a50: #ffacbe;
+	/* === Semantic mapping === */
+	/* Surfaces (backgrounds, containers, dividers) */
+	--surface-a0: var(--mono-0);
+	/* base page background */
+	--surface-a10: var(--mono-5);
+	/* raised container / alt bg */
+	--surface-a20: var(--mono-10);
+	/* subtle group bg */
+	--surface-a30: var(--mono-20);
+	/* borders/lines on light */
+	--surface-a40: var(--mono-30);
+	--surface-a50: var(--mono-40);
 
-	--dark-surface-a0: #121212;
-	--dark-surface-a10: #282828;
-	--dark-surface-a20: #3f3f3f;
-	--dark-surface-a30: #575757;
-	--dark-surface-a40: #717171;
-	--dark-surface-a50: #8b8b8b;
+	/* Tonal surfaces (hovered/pressed/subtle layering) */
+	--surface-tonal-a0: var(--mono-5);
+	--surface-tonal-a10: var(--mono-10);
+	--surface-tonal-a20: var(--mono-20);
+	--surface-tonal-a30: var(--mono-30);
+	--surface-tonal-a40: var(--mono-40);
+	--surface-tonal-a50: var(--mono-50);
 
-	--dark-surface-tonal-a0: #27181b;
-	--dark-surface-tonal-a10: #3c2d30;
-	--dark-surface-tonal-a20: #514446;
-	--dark-surface-tonal-a30: #685c5e;
-	--dark-surface-tonal-a40: #807577;
-	--dark-surface-tonal-a50: #988f90;
+	/* Primary = “ink” accent (buttons, active tabs, icons) */
+	--primary-a0: var(--mono-100);
+	/* solid black */
+	--primary-a10: #1a1a1a;
+	--primary-a20: #262626;
+	--primary-a30: #3d3d3d;
+	--primary-a40: #525252;
+	--primary-a50: #6b6b6b;
 
-	/* text defaults (set concrete values per theme below) */
-	--text: #0a0a0a;
-	--text-on-primary: #ffffff;
+	/* Text */
+	--text: var(--mono-100);
+	/* black on light surfaces */
+	--text-on-primary: var(--mono-0);
+	/* white on black accents */
 
-	/* focus + borders */
-	--focus-ring: #5b9aff;
-	--border: color-mix(in oklab, var(--text) 12%, transparent);
-}
-
-/* Default to LIGHT when no data-theme is set */
-:root,
-:root[data-theme="light"] {
-	color-scheme: light;
-
-	--primary-a0: var(--light-primary-a0);
-	--primary-a10: var(--light-primary-a10);
-	--primary-a20: var(--light-primary-a20);
-	--primary-a30: var(--light-primary-a30);
-	--primary-a40: var(--light-primary-a40);
-	--primary-a50: var(--light-primary-a50);
-
-	--surface-a0: var(--light-surface-a0);
-	--surface-a10: var(--light-surface-a10);
-	--surface-a20: var(--light-surface-a20);
-	--surface-a30: var(--light-surface-a30);
-	--surface-a40: var(--light-surface-a40);
-	--surface-a50: var(--light-surface-a50);
-
-	--surface-tonal-a0: var(--light-surface-tonal-a0);
-	--surface-tonal-a10: var(--light-surface-tonal-a10);
-	--surface-tonal-a20: var(--light-surface-tonal-a20);
-	--surface-tonal-a30: var(--light-surface-tonal-a30);
-	--surface-tonal-a40: var(--light-surface-tonal-a40);
-	--surface-tonal-a50: var(--light-surface-tonal-a50);
-
-	--text: #0a0a0a;
-	--text-on-primary: #ffffff;
-}
-
-/* DARK theme mapping */
-:root[data-theme="dark"] {
-	color-scheme: dark;
-
-	--primary-a0: var(--dark-primary-a0);
-	--primary-a10: var(--dark-primary-a10);
-	--primary-a20: var(--dark-primary-a20);
-	--primary-a30: var(--dark-primary-a30);
-	--primary-a40: var(--dark-primary-a40);
-	--primary-a50: var(--dark-primary-a50);
-
-	--surface-a0: var(--dark-surface-a0);
-	--surface-a10: var(--dark-surface-a10);
-	--surface-a20: var(--dark-surface-a20);
-	--surface-a30: var(--dark-surface-a30);
-	--surface-a40: var(--dark-surface-a40);
-	--surface-a50: var(--dark-surface-a50);
-
-	--surface-tonal-a0: var(--dark-surface-tonal-a0);
-	--surface-tonal-a10: var(--dark-surface-tonal-a10);
-	--surface-tonal-a20: var(--dark-surface-tonal-a20);
-	--surface-tonal-a30: var(--dark-surface-tonal-a30);
-	--surface-tonal-a40: var(--dark-surface-tonal-a40);
-	--surface-tonal-a50: var(--dark-surface-tonal-a50);
-
-	--text: #e7e7e7;
-	--text-on-primary: #0a0a0a;
+	/* Focus & borders */
+	--focus-ring: var(--mono-100);
+	/* high-contrast focus outline */
+	--border: color-mix(in oklab, var(--text) 16%, transparent);
 }
 
 html {
 	scroll-behavior: smooth;
 	overscroll-behavior: none;
+	background-color: var(--surface-a0);
+	color: var(--text);
+	font-family: var(--font-sans);
 }
 
 html,
@@ -151,6 +99,21 @@ body {
 /* Page content container */
 .page-content {
 	padding-top: 64px;
+	min-height: calc(100vh);
+	background-color: var(--surface-tonal-a10);
+	color: var(--text);
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+
+	padding-left: 16px;
+	padding-right: 16px;
+	box-sizing: border-box;
+}
+
+.page-content-landing {
 	min-height: calc(100vh);
 	background-color: var(--surface-tonal-a10);
 	color: var(--text);
@@ -195,152 +158,4 @@ body {
 
 .footer-left {
 	color: var(--text);
-}
-
-.footer-right {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: flex-end;
-}
-
-.theme-toggle {
-	display: inline-flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: flex-start;
-
-	background-color: transparent;
-	border-width: 0px;
-
-	cursor: pointer;
-	color: var(--text);
-	gap: 0px;
-	/* explicit */
-	padding-top: 0px;
-	padding-bottom: 0px;
-	padding-left: 0px;
-	padding-right: 0px;
-}
-
-.toggle-track {
-	position: relative;
-
-	width: 46px;
-	height: 26px;
-
-	background-color: var(--surface-tonal-a10);
-	border-width: 1px;
-	border-style: solid;
-	border-color: var(--surface-tonal-a20);
-	border-radius: 9999px;
-
-	margin-right: 8px;
-	box-shadow: 0px 0px 0px 0px transparent;
-
-	transition-property: background-color, border-color;
-	transition-duration: 160ms;
-	transition-timing-function: ease;
-}
-
-.toggle-thumb {
-	position: absolute;
-	top: 2px;
-	left: 2px;
-
-	width: 20px;
-	height: 20px;
-
-	background-color: var(--surface-a0);
-	border-width: 1px;
-	border-style: solid;
-	border-color: var(--surface-tonal-a20);
-	border-radius: 9999px;
-
-	transition-property: left, background-color, border-color, box-shadow;
-	transition-duration: 160ms;
-	transition-timing-function: ease;
-}
-
-/* Light state label */
-.toggle-label {
-	font-size: 14px;
-	color: var(--text);
-}
-
-/* When dark is active, move thumb right and add primary accent ring */
-.thumb-dark {
-	left: 22px;
-	background-color: var(--surface-a0);
-	border-color: var(--primary-a20);
-	box-shadow: 0px 0px 0px 2px var(--primary-a20) inset;
-}
-
-.theme-toggle:hover .toggle-track {
-	background-color: var(--surface-tonal-a20);
-	border-color: var(--surface-tonal-a30);
-}
-
-.theme-toggle:hover .toggle-thumb {
-	border-color: var(--surface-tonal-a30);
-}
-
-@font-face {
-	font-family: "Satoshi";
-	src: url("./assets/fonts/shatoshi/Satoshi-Variable.woff2") format("woff2"),
-		url("./assets/fonts/shatoshi/Satoshi-Variable.woff") format("woff"),
-		url("./assets/fonts/shatoshi/Satoshi-Variable.ttf") format("truetype");
-	font-weight: 200 900;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Satoshi";
-	src: url("./assets/fonts/shatoshi/Satoshi-VariableItalic.woff2") format("woff2"),
-		url("./assets/fonts/shatoshi/Satoshi-VariableItalic.woff") format("woff"),
-		url("./assets/fonts/shatoshi/Satoshi-VariableItalic.ttf") format("truetype");
-	font-weight: 200 900;
-	font-style: italic;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Satoshi";
-	src: url("./assets/fonts/shatoshi/Satoshi-Regular.woff2") format("woff2"),
-		url("./assets/fonts/shatoshi/Satoshi-Regular.woff") format("woff"),
-		url("./assets/fonts/shatoshi/Satoshi-Regular.ttf") format("truetype");
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Satoshi";
-	src: url("./assets/fonts/shatoshi/Satoshi-Medium.woff2") format("woff2"),
-		url("./assets/fonts/shatoshi/Satoshi-Medium.woff") format("woff"),
-		url("./assets/fonts/shatoshi/Satoshi-Medium.ttf") format("truetype");
-	font-weight: 500;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Satoshi";
-	src: url("./assets/fonts/shatoshi/Satoshi-Bold.woff2") format("woff2"),
-		url("./assets/fonts/shatoshi/Satoshi-Bold.woff") format("woff"),
-		url("./assets/fonts/shatoshi/Satoshi-Bold.ttf") format("truetype");
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Satoshi";
-	src: url("./assets/fonts/shatoshi/Satoshi-Black.woff2") format("woff2"),
-		url("./assets/fonts/shatoshi/Satoshi-Black.woff") format("woff"),
-		url("./assets/fonts/shatoshi/Satoshi-Black.ttf") format("truetype");
-	font-weight: 900;
-	font-style: normal;
-	font-display: swap;
 }

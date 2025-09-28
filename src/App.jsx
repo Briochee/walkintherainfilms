@@ -4,7 +4,7 @@ import "./App.css";
 import Navbar from "./components/navbar/navbar.jsx";
 import Landing from "./components/landing/landing.jsx";
 import Films from "./components/films/films.jsx";
-import Contact from "./components/contact/contact.jsx";
+// import Contact from "./components/contact/contact.jsx";
 import About from "./components/about/about.jsx";
 import Updates from "./components/updates/updates.jsx";
 
@@ -48,7 +48,7 @@ function App() {
 	}, []);
 
 	function navigate(to) {
-		const allowed = new Set(["#/", "#/films", "#/about", "#/contact", "#/updates"]);
+		const allowed = new Set(["#/", "#/films", "#/about", "#/newsandreviews"]);
 		const target = allowed.has(to) ? to : "#/";
 		if (window.location.hash !== target) {
 			window.location.hash = target;
@@ -60,44 +60,22 @@ function App() {
 	let Page = Landing;
 	if (route === "#/films") Page = Films;
 	if (route === "#/about") Page = About;
-	if (route === "#/updates") Page = Updates;
-	if (route === "#/contact") Page = Contact;
-
-	// Toggle handler
-	function handleThemeToggle() {
-		const next = theme === "dark" ? "light" : "dark";
-		setTheme(next);
-	}
+	if (route === "#/newsandreviews") Page = Updates;
+	// if (route === "#/contact") Page = Contact;
 
 	const isDark = theme === "dark";
 
 	return (
 		<div className="app-shell">
 			<Navbar currentRoute={route} onNavigate={navigate} />
-			<main className="page-content">
-				<Page />
+			<main className={route === "#/" ? "page-content-landing" : "page-content"}>
+				<Page onNavigate={navigate} currentRoute={route} />
 			</main>
-			<footer className="site-footer">
+			{/* <footer className="site-footer">
 				<div className="footer-inner">
 					<div className="footer-left">© {new Date().getFullYear()} Walk In the Rain Films</div>
-
-					<div className="footer-right">
-						<button
-							type="button"
-							className="theme-toggle"
-							role="switch"
-							aria-checked={isDark ? "true" : "false"}
-							aria-label="Toggle dark mode"
-							onClick={handleThemeToggle}
-						>
-							<span className="toggle-track">
-								<span className={`toggle-thumb ${isDark ? "thumb-dark" : "thumb-light"}`}></span>
-							</span>
-							<span className="toggle-label">{isDark ? "Dark" : "Light"}</span>
-						</button>
-					</div>
 				</div>
-			</footer>
+			</footer> */}
 		</div>
 	);
 }

@@ -22,7 +22,6 @@ const updatesData = [
 export default function Updates() {
 	return (
 		<section className="updates-wrap">
-			<h1 className="updates-page-title">Updates</h1>
 
 			<div className="updates-list">
 				{updatesData.map((u, i) => (
