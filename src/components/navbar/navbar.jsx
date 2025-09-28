@@ -51,17 +51,22 @@ export default function Navbar({ currentRoute, onNavigate }) {
     const expanded = open ? "true" : "false";
 
     return (
-        <header className="nav-header">
-            <div className="nav-inner">
-                <div
-                    className="brand"
-                    onClick={() => onNavigate("#/")}
-                    role="link"
-                    tabIndex={0}
-                    onKeyDown={(e) => { if (e.key === "Enter") onNavigate("#/"); }}             
-                >
-                    <div className="brand-title">{currentRoute === "#/" ? "Welcome!" : "Walk In the Rain Films"}</div>
-                </div>
+        <header 
+            className="nav-header"
+            style={currentRoute === "#/" ? { display: "none" } : undefined}
+        >
+            <div className={currentRoute === "#/" ? "nav-inner" : "nav-inner-full"}>
+                {currentRoute === "#/" ? null : 
+                    <div
+                        className="brand"
+                        onClick={() => onNavigate("#/")}
+                        role="link"
+                        tabIndex={0}
+                        onKeyDown={(e) => { if (e.key === "Enter") onNavigate("#/"); }}
+                    >
+                        <div className="brand-title">Walk In the Rain Films</div>
+                    </div>
+                }
 
                 <button
                     ref={buttonRef}
@@ -97,22 +102,16 @@ export default function Navbar({ currentRoute, onNavigate }) {
                             Films
                         </button>
                         <button
-                            className={`nav-link ${currentRoute === "#/updates" ? "active" : ""}`}
-                            onClick={() => onNavigate("#/updates")}
+                            className={`nav-link ${currentRoute === "#/newsandreviews" ? "active" : ""}`}
+                            onClick={() => onNavigate("#/newsandreviews")}
                         >
-                            Updates
+                            News & Reviews
                         </button>
                         <button
                             className={`nav-link ${currentRoute === "#/about" ? "active" : ""}`}
                             onClick={() => onNavigate("#/about")}
                         >
                             About
-                        </button>
-                        <button
-                            className={`nav-link ${currentRoute === "#/contact" ? "active" : ""}`}
-                            onClick={() => onNavigate("#/contact")}
-                        >
-                            Contact
                         </button>
                     </div>
                 </nav>

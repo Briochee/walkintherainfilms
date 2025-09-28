@@ -12,9 +12,9 @@ import historyThumb from "../../assets/images/FILM PAGE IMAGE_ Luis Hand on barr
 const films = [
     {
         id: "petronio",
-        title: "Petronio",
+        title: "Petronio (In Progress)",
         thumbSrc: petronioThumb,
-        thumbPosition: "50% 45%",   // adjustable per film
+        thumbPosition: "50% 38%",   // adjustable per film
         thumbAspect: "56.25%",
         inside: {
             kind: "image",
@@ -23,22 +23,21 @@ const films = [
             aspect: "56.25%",
             position: "center center"
         },
-        description: `Petronio (in progress)
-Choreographer Stephen Petronio burst onto the scene at the beginning of the AIDS crisis, creating dances with unabashed sexuality that blurred gender lines and laid the ground for generations of dance-makers to come. As a massive backlash against gay and trans rights rocks the country today, Stephen leads his 40-year company to their final performances.`,
+        description: `Choreographer Stephen Petronio burst onto the scene at the beginning of the AIDS crisis, creating dances with unabashed sexuality that blurred gender lines and laid the ground for generations of dance-makers to come. As a massive backlash against gay and trans rights rocks the country today, Stephen leads his 40-year company to their final performances.`,
         credits: [
             {
                 label: "Cover photo: Stephen in corset — Chris Nash",
                 href: "https://www.chrisnashphoto.com",
-                after: "@chrisnash_dancephotography",
+                after: " @chrisnash_dancephotography",
             },
         ],
     },
 
     {
         id: "if-the-dancer-dances",
-        title: "If the Dancer Dances",
+        title: "If the Dancer Dances (2018)",
         thumbSrc: dancerThumb,
-        thumbPosition: "center center",
+        thumbPosition: "center 0%",
         thumbAspect: "56.25%",
         inside: {
             kind: "embed",
@@ -47,8 +46,7 @@ Choreographer Stephen Petronio burst onto the scene at the beginning of the AIDS
             aspect: "56.25%",
             position: "center center"
         },
-        description: `If the Dancer Dances (2018)
-If a dance is not danced, it vanishes. If the Dancer Dances invites viewers into the intimate world of the dance studio and reveals what it takes to keep a dance – and a legacy – alive.`,
+        description: `If a dance is not danced, it vanishes. If the Dancer Dances invites viewers into the intimate world of the dance studio and reveals what it takes to keep a dance – and a legacy – alive.`,
         links: [
             {
                 label: "Watch on Amazon Prime",
@@ -59,9 +57,9 @@ If a dance is not danced, it vanishes. If the Dancer Dances invites viewers into
 
     {
         id: "history-of-the-future",
-        title: "The History of the Future",
+        title: "The History of the Future (In Progress)",
         thumbSrc: historyThumb,
-        thumbPosition: "50% 55%",
+        thumbPosition: "5% 55%",
         thumbAspect: "56.25%",
         inside: {
             kind: "video",
@@ -70,8 +68,7 @@ If a dance is not danced, it vanishes. If the Dancer Dances invites viewers into
             aspect: "56.25%",
             position: "center center"
         },
-        description: `History of the Future (in progress)
-Project on the call for profound changes in the dance world around issues of equity: who dances, what is danced and who is leading.`,
+        description: `Project on the call for profound changes in the dance world around issues of equity: who dances, what is danced and who is leading.`,
     },
 ];
 
@@ -91,8 +88,6 @@ export default function Films() {
 
     return (
         <section className="films-wrap">
-            <h1 className="films-title">Films</h1>
-
             {/* COLUMN LIST */}
             <div className="films-list">
                 {films.map((film) => (
