@@ -121,15 +121,15 @@
     }
 
     .landing-nav {
-        top: 16px;
+        bottom: 20px;
         left: 50%;
         right: auto;
 
-        align-items: center;  /* center the list */
+        align-items: center;
         gap: 6px;
 
         /* place directly under the centered title */
-        transform: translate(-50%, calc(100% + 175px));
+        transform: translate(-50%);
     }
 
     .landing-nav-link {
