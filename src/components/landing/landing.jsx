@@ -19,7 +19,7 @@ export default function Landing() {
 
       <nav className="landing-nav" aria-label="Landing navigation">
         <a className="landing-nav-link" href="#/films">Films</a>
-        <a className="landing-nav-link" href="#/updates">Updates</a>
+        <a className="landing-nav-link" href="#/newsandreviews">Updates</a>
         <a className="landing-nav-link" href="#/about">About</a>
       </nav>
     </section>
