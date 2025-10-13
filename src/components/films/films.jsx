@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { FastAverageColor } from "fast-average-color";
 import "./films.css";
 
 import petronioThumb from "../../assets/images/FILM PAGE IMAGE Stephen_Petronio_Company_1993_MSG_Chris_Nash.jpg";
@@ -12,10 +13,11 @@ import historyThumb from "../../assets/images/FILM PAGE IMAGE_ Luis Hand on barr
 const films = [
     {
         id: "petronio",
-        title: "Petronio (In Progress)",
+        title: "Petronio",
         thumbSrc: petronioThumb,
-        thumbPosition: "50% 38%",   // adjustable per film
+        thumbPosition: "50% 35%",
         thumbAspect: "56.25%",
+        thumbZoom: 1.07,
         inside: {
             kind: "image",
             src: petronioInside,
@@ -35,10 +37,11 @@ const films = [
 
     {
         id: "if-the-dancer-dances",
-        title: "If the Dancer Dances (2018)",
+        title: "If the Dancer Dances",
         thumbSrc: dancerThumb,
         thumbPosition: "center 0%",
         thumbAspect: "56.25%",
+        thumbZoom: 1.0,
         inside: {
             kind: "embed",
             src: "https://player.vimeo.com/video/323308357?badge=0&autopause=0&player_id=0&app_id=58479",
@@ -57,24 +60,120 @@ const films = [
 
     {
         id: "history-of-the-future",
-        title: "The History of the Future (In Progress)",
+        title: "The History of the Future",
         thumbSrc: historyThumb,
         thumbPosition: "5% 55%",
         thumbAspect: "56.25%",
+        thumbZoom: 1.0,
         inside: {
-            kind: "video",
-            src: "https://vimeo.com/850354180",
+            kind: "embed",
+            src: "https://1drv.ms/v/c/5bf512098e94631a/IQQuftNvNn11TakzwGSfnCP3AdSRfX-zD0CUnU6OAAloOY0?start=2?options=0",
             title: "Film sample",
             aspect: "56.25%",
             position: "center center"
         },
-        description: `Project on the call for profound changes in the dance world around issues of equity: who dances, what is danced and who is leading.`,
+        description: `Project on the call for profound changes in the dance world around issues of equity: who dances, what is danced and who is leading. With MOVE|NYC|`,
     },
 ];
 
-export default function Films() {
+export default function Films({ registerClose }) {
     const [openId, setOpenId] = useState(null);
     const current = films.find(f => f.id === openId) || null;
+    const [dominantColors, setDominantColors] = useState({});
+
+    useEffect(() => {
+        const fac = new FastAverageColor();
+        const images = [];
+
+        films.forEach((film) => {
+            const img = new Image();
+            img.crossOrigin = "Anonymous";
+            img.src = film.thumbSrc;
+
+            img.onload = async () => {
+                try {
+                    const colorData = await fac.getColorAsync(img);
+                    if (colorData && colorData.rgba) {
+                        setDominantColors((prev) => ({
+                            ...prev,
+                            [film.id]: colorData.rgba,
+                        }));
+                    } else {
+                        setDominantColors((prev) => ({
+                            ...prev,
+                            [film.id]: "rgba(60,60,60,1)",
+                        }));
+                    }
+                } catch (err) {
+                    console.warn(`FAC color extraction failed for ${film.title}:`, err);
+                    setDominantColors((prev) => ({
+                        ...prev,
+                        [film.id]: "rgba(60,60,60,1)",
+                    }));
+                }
+            };
+
+            images.push(img);
+        });
+
+        return () => {
+            images.forEach((img) => (img.onload = null));
+            fac.destroy();
+        };
+    }, []);
+
+    useEffect(() => {
+        if (registerClose) {
+            registerClose.current = closeFilm;
+            return () => {
+                registerClose.current = null;
+            };
+        }
+    }, [registerClose]);
+
+    useEffect(() => {
+        // only activate on desktop
+        if (window.innerWidth < 768) return;
+
+        const container = document.querySelector(".films-list");
+        if (!container) return;
+
+        let scrollTimeout;
+
+        const handleScroll = () => {
+            clearTimeout(scrollTimeout);
+
+            scrollTimeout = setTimeout(() => {
+                const rows = Array.from(container.querySelectorAll(".film-row"));
+                const containerRect = container.getBoundingClientRect();
+
+                let bestRow = null;
+                let largestVisibleArea = 0;
+
+                for (const row of rows) {
+                    const rect = row.getBoundingClientRect();
+                    const visibleTop = Math.max(rect.top, containerRect.top);
+                    const visibleBottom = Math.min(rect.bottom, containerRect.bottom);
+                    const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+
+                    if (visibleHeight > largestVisibleArea) {
+                        largestVisibleArea = visibleHeight;
+                        bestRow = row;
+                    }
+                }
+
+                if (bestRow) {
+                    bestRow.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                    });
+                }
+            }, 120);
+        };
+
+        container.addEventListener("scroll", handleScroll);
+        return () => container.removeEventListener("scroll", handleScroll);
+    }, []);
 
     function openFilm(id) {
         setOpenId(id);
@@ -103,6 +202,7 @@ export default function Films() {
                                 backgroundImage: `url(${film.thumbSrc})`,
                                 backgroundPosition: film.thumbPosition || "center center",
                                 "--thumb-aspect": film.thumbAspect || "56.25%",
+                                "--thumb-zoom": film.thumbZoom,
                             }}
                             role="img"
                             aria-label={`${film.title} thumbnail`}
@@ -119,14 +219,13 @@ export default function Films() {
                     role="dialog"
                     aria-modal="true"
                     aria-label={`${current.title} details`}
+                    style={{
+                        "--modal-bg": `${dominantColors[current.id] || "rgba(0,0,0,0.85)"}`,
+                    }}
                 >
                     <div className="film-modal">
-                        <div className="film-modal-header">
-                            <h2 className="film-modal-title">{current.title}</h2>
-                            <button className="film-modal-close" onClick={closeFilm} aria-label="Close">×</button>
-                        </div>
-
                         <div className="film-modal-media">
+                            <button className="film-modal-close" onClick={closeFilm} aria-label="Close">×</button>
                             <div
                                 className="aspect-16x9"
                                 style={{
@@ -183,10 +282,12 @@ export default function Films() {
                                 <div className="film-credits">
                                     {current.credits.map((c, i) => (
                                         <p key={i} className="film-credit-line">
-                                            <a className="film-credit-link" href={c.href} target="_blank" rel="noreferrer">
+                                            <span className="film-credit-after">
                                                 {c.label}
-                                            </a>
-                                            {c.after ? <span className="film-credit-after">{c.after}</span> : null}
+                                            </span>
+                                            {c.after ? <a href={c.href} target="_blank" rel="noreferrer" className="film-credit-link">
+                                                {c.after}
+                                            </a> : null}
                                         </p>
                                     ))}
                                 </div>

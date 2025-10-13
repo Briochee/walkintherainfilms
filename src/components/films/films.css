@@ -1,183 +1,114 @@
 /* ===== FULL-SCREEN FILMS PAGE ===== */
 
-/* Page wrapper: full-width, account for fixed navbar height */
+/* Hide color-thief canvas elements */
+canvas {
+    display: none;
+}
+
+/* ===== Page Structure ===== */
 .films-wrap {
     width: 100vw;
     max-width: none;
-
-    margin-left: 0px;
-    margin-right: 0px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-
-    /* offset content below the fixed 64px navbar */
-    padding-bottom: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
-
+    margin: 0;
+    padding: 0;
     background-color: transparent;
-    border-radius: 0px;
-
+    border-radius: 0;
     box-sizing: border-box;
 }
 
-/* Page title pinned above the first section */
+/* Section title (optional, under navbar) */
 .films-title {
     position: absolute;
-    top: 64px;    /* exactly under the fixed navbar */
+    top: 64px;
     left: 16px;
-
-    margin-top: 0px;
-    margin-bottom: 0px;
-
+    margin: 0;
     font-size: 22px;
     font-weight: 700;
-
     color: var(--text);
-
     z-index: 2;
-    /* optional subtle label look */
-    padding-top: 6px;
-    padding-bottom: 6px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 6px 10px;
     background-color: color-mix(in oklab, var(--surface-a0) 65%, transparent);
+    border: 1px solid var(--surface-tonal-a20);
     border-radius: 8px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: var(--surface-tonal-a20);
 }
 
-/* We no longer need the intro copy for this layout; keep if you want above first item */
 .films-copy {
     display: none;
 }
 
-/* List becomes a vertical snap container */
+/* ===== Scroll Container (desktop) ===== */
 .films-list {
     display: block;
+    height: calc(100vh - 64px);
+    overflow-y: scroll;
+    overflow-x: hidden;
 
     scroll-snap-type: y mandatory;
-    overflow-x: hidden;
-    overflow-y: auto;
-
-    /* The list itself fills the viewport minus navbar */
-    height: calc(100vh - 64px);
-
-    /* no gaps; each item is a full screen "slide" */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
 }
 
-/* Each film row is a full-screen, clickable section */
+/* Each full-screen section */
 .film-row {
     position: relative;
-
-    width: 100vw;
+    width: 100%;
     height: calc(100vh - 64px);
-
     display: block;
 
-    /* reset button look */
-    background-color: transparent;
-    border-width: 0px;
-    border-style: none;
-    border-color: transparent;
-    border-radius: 0px;
-
-    padding-top: 0px;
-    padding-bottom: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
 
     text-align: left;
     color: var(--text);
     cursor: pointer;
 
     scroll-snap-align: start;
+    scroll-snap-stop: always;
 
-    /* subtle interaction */
-    transition-property: transform, filter;
-    transition-duration: 200ms;
-    transition-timing-function: ease;
+    transition: background-size 0.4s ease;
 }
 
 .film-row:focus-visible {
-    outline-width: 0px;
-    box-shadow: 0px 0px 0px 3px var(--primary-a30) inset;
+    outline: none;
+    box-shadow: inset 0 0 0 3px var(--primary-a30);
 }
 
-/* The thumbnail becomes a full-bleed background */
+/* Thumbnail (full-bleed background) */
 .film-thumb {
     position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-
+    inset: 0;
     width: 100%;
     height: 100%;
-    padding-bottom: 0px; /* override 16:9 paddings from old layout */
-
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: calc(100% * var(--thumb-zoom, 1)) auto;
     background-position: center center;
-
-    border-radius: 0px;
-    margin-bottom: 0px;
-
-    /* slight dim for title readability */
     filter: brightness(0.92);
+    transition: background-size 0.4s ease;
 }
 
-/* Title overlay (bottom-left by default) */
+/* Title overlay */
 .film-row-title {
     position: absolute;
     left: 24px;
     bottom: 24px;
-
-    margin-top: 0px;
-    margin-bottom: 0px;
-
+    margin: 0;
     font-size: clamp(20px, 4vw, 42px);
     font-weight: 800;
-
     color: white;
-
-    padding-top: 6px;
-    padding-bottom: 6px;
-    padding-left: 10px;
-    padding-right: 10px;
-
+    padding: 6px 10px;
     z-index: 1;
 }
 
-/* Optional hover lift on large screens */
-@media (hover: hover) and (pointer: fine) {
-    .film-row:hover .film-thumb {
-        filter: brightness(0.98);
-        transform: scale(1.01);
-    }
-}
-
-/* Mobile spacing */
-@media (max-width: 480px) {
-    .film-row-title {
-        left: 16px;
-        bottom: 16px;
-        font-size: clamp(18px, 6vw, 28px);
-        border-radius: 8px;
-    }
-}
-
-/* ===== Modal overlay & media (unchanged from your version) ===== */
-
+/* ===== Modal Overlay & Body ===== */
 .film-modal-overlay {
     position: fixed;
     top: 64px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-
-    background-color: color-mix(in oklab, var(--mono-90) 90%, transparent);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: color-mix(in oklab, var(--modal-bg, #000) 90%, transparent);
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
 
@@ -185,146 +116,90 @@
     align-items: center;
     justify-content: center;
 
-    padding-top: 16px;
-    padding-bottom: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
-
+    padding: 16px;
     z-index: 1100;
 }
 
 .film-modal {
     width: 100%;
     max-width: 1200px;
-
     background-color: var(--surface-a10);
     color: var(--text);
 
-    border-width: 1px;
-    border-style: solid;
-    border-color: var(--surface-tonal-a20);
-    border-radius: 12px;
-
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.35);
-
     display: flex;
     flex-direction: column;
-
     max-height: calc(100vh - 64px - 40px);
     overflow-y: auto;
 }
 
-.film-modal-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-
-    padding-top: 12px;
-    padding-bottom: 12px;
-    padding-left: 16px;
-    padding-right: 8px;
-
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: var(--surface-tonal-a20);
-}
-
-.film-modal-title {
-    font-size: 22px;
-    font-weight: 700;
-    margin-top: 0px;
-    margin-bottom: 0px;
+.film-modal-media {
+    position: relative;
 }
 
 .film-modal-close {
-    background-color: transparent;
-    color: var(--text);
-
-    border-width: 1px;
-    border-style: solid;
-    border-color: var(--surface-tonal-a20);
-    border-radius: 8px;
-
-    padding-top: 4px;
-    padding-bottom: 4px;
-    padding-left: 10px;
-    padding-right: 10px;
-
+    position: absolute;
+    z-index: 1200;
+    top: 25px;
+    right: 25px;
+    width: 52px;
+    height: 52px;
+    font-size: 40px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    backdrop-filter: blur(6px);
     cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
 }
 
 .film-modal-close:hover {
-    background-color: var(--surface-tonal-a10);
-    border-color: var(--surface-tonal-a30);
-}
-
-.film-modal-media {
-    padding-top: 12px;
-    padding-bottom: 0px;
-    padding-left: 12px;
-    padding-right: 12px;
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.05);
 }
 
 .aspect-16x9 {
     position: relative;
     width: 100%;
-    height: 0px;
+    height: 0;
     padding-bottom: var(--media-aspect, 56.25%);
-    border-radius: 8px;
     overflow: hidden;
-    background-color: #000000;
+    background-color: #000;
+}
+
+.aspect-fill-image,
+.aspect-fill-video,
+.aspect-fill-embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background-color: #000;
+    object-fit: cover;
 }
 
 .aspect-fill-image {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-
-    background-repeat: no-repeat;
     background-size: cover;
+    background-repeat: no-repeat;
     background-position: center center;
-}
-
-.aspect-fill-video {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    border-width: 0px;
-    display: block;
-    background-color: #000000;
-}
-
-.aspect-fill-embed {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    border-width: 0px;
+    background-color: #000;
 }
 
 .film-media-placeholder {
     position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-
+    inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-
     background-color: var(--surface-tonal-a10);
+    border: 1px dashed var(--surface-tonal-a30);
     border-radius: 8px;
-
-    border-width: 1px;
-    border-style: dashed;
-    border-color: var(--surface-tonal-a30);
 }
 
 .film-media-placeholder-text {
@@ -332,54 +207,134 @@
 }
 
 .film-modal-body {
-    padding-top: 12px;
-    padding-bottom: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
+    background-color: color-mix(in oklab, var(--modal-bg, #000) 90%, transparent);
+    padding: 12px 16px 16px 16px;
 }
 
 .film-description {
-    white-space: pre-line;
-    margin-top: 0px;
-    margin-bottom: 12px;
+    font-size: large;
+    font-weight: bold;
+    margin: 0 0 12px 0;
+    padding: 0 10px;
+    color: white;
 }
 
-.film-credits {
+.film-credits,
+.film-links {
+    font-size: large;
+    font-weight: bold;
     margin-top: 8px;
-    margin-bottom: 8px;
+    padding: 0 10px;
 }
 
-.film-credit-line {
-    margin-top: 0px;
-    margin-bottom: 6px;
+.film-credit-line,
+.film-link-line {
+    margin: 0 0 6px 0;
 }
 
 .film-credit-link {
-    color: var(--glaucous);
-    text-decoration-line: underline;
+    color: #97d8f4;
+    text-decoration: underline;
     text-underline-offset: 2px;
 }
+
 .film-credit-link:hover {
     color: var(--glaucous);
 }
 
 .film-credit-after {
-    color: color-mix(in oklab, var(--text) 75%, transparent);
+    color: white;
 }
 
-.film-links {
-    margin-top: 8px;
-    margin-bottom: 0px;
-}
-.film-link-line {
-    margin-top: 0px;
-    margin-bottom: 6px;
-}
 .film-link {
-    color: var(--primary-a10);
-    text-decoration-line: underline;
+    color: white;
+    text-decoration: underline;
     text-underline-offset: 2px;
 }
+
 .film-link:hover {
     color: var(--primary-a20);
+}
+
+/* ===== MOBILE FULL-BLEED FIXES ===== */
+@media (max-width: 768px) {
+
+    /* Disable snap and allow normal scrolling */
+    .films-list {
+        scroll-snap-type: none;
+        overflow-y: auto;
+        height: auto;
+        min-height: 100%;
+    }
+
+    .film-row {
+        position: relative;
+        width: 100%;
+        min-height: calc(100dvh - 64px);
+        /* fill mobile screen */
+        scroll-snap-align: none;
+        overflow: hidden;
+        transform: translateZ(0);
+        background-attachment: scroll;
+    }
+
+    .film-thumb {
+        position: absolute;
+        inset: 0;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        filter: brightness(0.9);
+    }
+
+    .film-row-title {
+        left: 16px;
+        bottom: 25px;
+        font-size: clamp(20px, 10vw, 28px);
+        font-weight: bolder;
+        border-radius: 8px;
+        padding: 4px 8px;
+        line-height: 1.2;
+    }
+
+    .films-list::after {
+        display: none;
+    }
+
+    .film-modal {
+        position: absolute;
+        top: 64px;
+        max-width: 95vw;
+        max-height: 85vh;
+        overflow-y: auto;
+    }
+
+    .film-modal-media {
+        position: relative;
+    }
+
+    .film-modal-close {
+        position: fixed !important;
+        top: auto !important;
+        right: auto !important;
+        bottom: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 52px;
+        height: 52px;
+        font-size: 40px;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        backdrop-filter: blur(6px);
+        cursor: pointer;
+        z-index: 2000;
+        transition: background 0.2s ease, transform 0.15s ease;
+    }
 }
