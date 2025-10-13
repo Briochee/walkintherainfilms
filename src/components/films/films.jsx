@@ -207,7 +207,7 @@ export default function Films({ registerClose }) {
                             role="img"
                             aria-label={`${film.title} thumbnail`}
                         />
-                        <div className="film-row-title">{film.title}</div>
+                        <h2 className="film-row-title">{film.title}</h2>
                     </button>
                 ))}
             </div>
@@ -225,7 +225,10 @@ export default function Films({ registerClose }) {
                 >
                     <div className="film-modal">
                         <div className="film-modal-media">
-                            <button className="film-modal-close" onClick={closeFilm} aria-label="Close">×</button>
+                            <button className="film-modal-close" onClick={closeFilm} aria-label="Close">
+                                <span className="films-bar films-bar-top"></span>
+                                <span className="films-bar films-bar-bottom"></span>
+                            </button>
                             <div
                                 className="aspect-16x9"
                                 style={{

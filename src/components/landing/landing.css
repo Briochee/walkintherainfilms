@@ -122,7 +122,7 @@
         right: auto;
 
         align-items: center;
-        gap: 6px;
+        gap: 25px;
 
         /* place directly under the centered title */
         transform: translate(-50%);
@@ -130,13 +130,9 @@
 
     .landing-nav-link {
         font-size: clamp(18px, 10vw, 48px);
-
-        padding-top: 4px;
-        padding-bottom: 4px;
-        padding-left: 8px;
-        padding-right: 8px;
-
-        border-radius: 10px;
+        padding: 0;
+        text-align: center;
+        line-height: 1;
     }
 }
 
