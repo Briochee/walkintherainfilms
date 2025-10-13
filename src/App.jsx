@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./App.css";
 
 import Navbar from "./components/navbar/navbar.jsx";
 import Landing from "./components/landing/landing.jsx";
 import Films from "./components/films/films.jsx";
-// import Contact from "./components/contact/contact.jsx";
 import About from "./components/about/about.jsx";
 import Updates from "./components/updates/updates.jsx";
-
 
 const STORAGE_KEY = "walkintherainfilms_color_mode";
 
 function App() {
 	const [route, setRoute] = useState(window.location.hash || "#/");
-	const [theme, setThemeState] = useState("dark"); // default
+	const [theme, setThemeState] = useState("dark");
+	const filmCloseRef = useRef(null);
 
-	// On page load: check system preference and set theme once
+	// Detect system theme on first load
 	useEffect(() => {
 		const prefersDark =
 			window.matchMedia &&
@@ -34,10 +33,31 @@ function App() {
 		document.documentElement.setAttribute("data-theme", finalTheme);
 		try {
 			window.localStorage.setItem(STORAGE_KEY, finalTheme);
-		} catch { /* ignore */ }
+		} catch {
+			/* ignore */
+		}
 	}
 
-	// Simple hash router
+	// Simple navigation with “close modal if on Films” logic
+	function navigate(to) {
+		const allowed = new Set(["#/", "#/films", "#/about", "#/newsandreviews"]);
+		const target = allowed.has(to) ? to : "#/";
+
+		// if already on Films page → close modal
+		if (to === "#/films" && route === "#/films") {
+			if (filmCloseRef.current) filmCloseRef.current();
+			return;
+		}
+
+		// otherwise change hash
+		if (window.location.hash !== target) {
+			window.location.hash = target;
+		} else {
+			setRoute(target);
+		}
+	}
+
+	// Watch hash changes
 	useEffect(() => {
 		function onHashChange() {
 			const next = window.location.hash || "#/";
@@ -47,23 +67,10 @@ function App() {
 		return () => window.removeEventListener("hashchange", onHashChange);
 	}, []);
 
-	function navigate(to) {
-		const allowed = new Set(["#/", "#/films", "#/about", "#/newsandreviews"]);
-		const target = allowed.has(to) ? to : "#/";
-		if (window.location.hash !== target) {
-			window.location.hash = target;
-		} else {
-			setRoute(target);
-		}
-	}
-
 	let Page = Landing;
-	if (route === "#/films") Page = Films;
+	if (route === "#/films") Page = () => <Films registerClose={filmCloseRef} />;
 	if (route === "#/about") Page = About;
 	if (route === "#/newsandreviews") Page = Updates;
-	// if (route === "#/contact") Page = Contact;
-
-	const isDark = theme === "dark";
 
 	return (
 		<div className="app-shell">
@@ -71,11 +78,6 @@ function App() {
 			<main className={route === "#/" ? "page-content-landing" : "page-content"}>
 				<Page onNavigate={navigate} currentRoute={route} />
 			</main>
-			{/* <footer className="site-footer">
-				<div className="footer-inner">
-					<div className="footer-left">© {new Date().getFullYear()} Walk In the Rain Films</div>
-				</div>
-			</footer> */}
 		</div>
 	);
 }
