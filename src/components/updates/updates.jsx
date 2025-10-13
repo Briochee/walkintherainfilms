@@ -4,7 +4,7 @@ import "./updates.css";
 const updatesData = [
 	{
 		title: "If the Dancer Dances",
-		info: "Walk in the Rain Films is currently in production (2025) on a film about choreographer Stephen Petronio and his ground-breaking work.",
+		info: "",
 		tags: {
 			"The New York Times, Critic’s Pick": "Improbably poignant ... even viewers without the faintest grasp of dance technique will gain a strong sense of what made [Merce] Cunningham’s work groundbreaking.",
 			"The Hollywood Reporter": "A moving cinematic tribute ... Captures the passion and the sweat of performance.",
@@ -22,12 +22,11 @@ const updatesData = [
 export default function Updates() {
 	return (
 		<section className="updates-wrap">
-
+			<h1 className="update-info">Walk in the Rain Films is currently in production on a film about choreographer Stephen Petronio and his ground-breaking work.</h1>
 			<div className="updates-list">
 				{updatesData.map((u, i) => (
 					<article key={i} className="updates-entry">
 						<h2 className="update-title">{u.title}</h2>
-						<p className="update-info">{u.info}</p>
 
 						{u.tags && (
 							<div className="update-tags">

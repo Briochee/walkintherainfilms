@@ -26,19 +26,21 @@
 
 /* Title remains themed; you can keep or remove the underline accent */
 .about-title {
-    font-size: 28px;
-    font-weight: 700;
+    font-size: 40px;
+    font-weight: bolder;
 
     margin-top: 0px;
     margin-bottom: 16px;
 
     color: var(--text);
 
-    border-bottom-width: 2px;
-    border-bottom-style: solid;
-    border-bottom-color: var(--primary-a20);
     padding-bottom: 4px;
     display: inline-block;
+}
+
+.about-title i {
+    font-size: 28px;
+    font-weight: bold;
 }
 
 /* Body copy */

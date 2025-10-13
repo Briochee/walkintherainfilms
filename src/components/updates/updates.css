@@ -71,28 +71,23 @@
     font-size: 22px;
     font-weight: 700;
 
-    margin-top: 0px;
-    margin-bottom: 8px;
-
     color: var(--text);
 
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: var(--primary-a20);
-    padding-bottom: 2px;
+    margin-bottom: 1px;
+    padding-bottom: 0px;
     display: inline-block;
+    text-decoration: none;
 }
 
 /* Entry body text (match About’s reading size/leading) */
 .update-info {
-    font-size: 20px;
-    line-height: 1.8;
+    line-height: 1.1;
 
     margin-top: 0px;
     margin-bottom: 10px;
 
     color: var(--text);
-    font-weight: 500;
+    font-weight: bold;
 }
 
 /* ===== Tags (quotes/press blurbs) ===== */
@@ -105,7 +100,7 @@
     gap: 12px;
 
     font-size: 18px;
-    line-height: 1.7;
+    line-height: 1.5;
     color: var(--text);
 }
 

@@ -4,7 +4,7 @@ import "./about.css";
 export default function About() {
     return (
         <section className="about-wrap">
-            <h1 className="about-title">Walk in the Rain Films where art and our world meet</h1>
+            <h1 className="about-title">Walk in the Rain Films <i>where art and our world meet</i></h1>
             <p className="about-section">
                 <strong>Lise Friedman</strong> is coproducer of If the Dancer Dances, a documentary released theatrically across the U.S and streaming on Amazon Prime.
                 She is a former member of the Merce Cunningham Dance Company, an award-winning writer (including Alvin Ailey Dance Moves! and two Children's Book of the Month featured titles),
