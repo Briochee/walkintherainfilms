@@ -64,7 +64,7 @@ export default function Navbar({ currentRoute, onNavigate }) {
                         tabIndex={0}
                         onKeyDown={(e) => { if (e.key === "Enter") onNavigate("#/"); }}
                     >
-                        <div className="brand-title">Walk In the Rain Films</div>
+                        <div className="brand-title">Walk in the Rain Films</div>
                     </div>
                 }
 
