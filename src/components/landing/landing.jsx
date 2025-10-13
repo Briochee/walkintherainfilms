@@ -3,7 +3,7 @@ import "./landing.css";
 
 export default function Landing() {
 
-  const heroUrl = "https://github.com/Briochee/walkintherainfilms/blob/main/src/assets/images/landing-hero.png?raw=true";
+  const heroUrl = "https://raw.githubusercontent.com/Briochee/walkintherainfilms/main/src/assets/images/landing-hero.png";
 
   return (
     <section className="landing-hero" role="region" aria-label="Landing hero">

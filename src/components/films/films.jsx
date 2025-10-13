@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { FastAverageColor } from "fast-average-color";
 import "./films.css";
 
-const petronioThumb = "https://github.com/Briochee/walkintherainfilms/blob/main/src/assets/images/FILM%20PAGE%20IMAGE%20Stephen_Petronio_Company_1993_MSG_Chris_Nash.jpg?raw=true";
-const petronioInside = "https://github.com/Briochee/walkintherainfilms/blob/main/src/assets/images/Inside%20image%20option%202_%20Stephen%20uncropped.JPG?raw=true";
+const petronioThumb = "https://raw.githubusercontent.com/Briochee/walkintherainfilms/main/src/assets/images/FILM%20PAGE%20IMAGE%20Stephen_Petronio_Company_1993_MSG_Chris_Nash.jpg";
+const petronioInside = "https://raw.githubusercontent.com/Briochee/walkintherainfilms/main/src/assets/images/Inside%20image%20option%202_%20Stephen%20uncropped.JPG";
 
-const dancerThumb = "https://github.com/Briochee/walkintherainfilms/blob/main/src/assets/images/FILM%20PAGE%20IMAGE%20Dava%20Meg%20arms.jpg?raw=true";
-const dancerTrailerPoster = "https://github.com/Briochee/walkintherainfilms/blob/main/src/assets/images/Ifthedancerdances.jpg?raw=true";
+const dancerThumb = "https://raw.githubusercontent.com/Briochee/walkintherainfilms/main/src/assets/images/FILM%20PAGE%20IMAGE%20Dava%20Meg%20arms.jpg";
+const dancerTrailerPoster = "https://raw.githubusercontent.com/Briochee/walkintherainfilms/main/src/assets/images/Ifthedancerdances.jpg";
 
-const historyThumb = "https://github.com/Briochee/walkintherainfilms/blob/main/src/assets/images/FILM%20PAGE%20IMAGE_%20Luis%20Hand%20on%20barre%20SHD__1602_2023-02-21-10-31-07.jpg?raw=true";
+const historyThumb = "https://raw.githubusercontent.com/Briochee/walkintherainfilms/main/src/assets/images/FILM%20PAGE%20IMAGE_%20Luis%20Hand%20on%20barre%20SHD__1602_2023-02-21-10-31-07.jpg";
 
 const films = [
     {
