@@ -40,19 +40,15 @@
     right: 48px;
 
     margin: 0px;
+    padding: 0px;
 
-    font-size: clamp(28px, 15vw, 100px);
-    font-weight: 700;
-    text-shadow: 1px 1px 1px rgb(86, 86, 86);
+    font-size: clamp(28px, 20vh, 100px);
+    font-weight: 1000;
 
-    color: white;
+    color: rgb(14, 23, 78);
     z-index: 2;
     text-align: right;
-}
-
-#title-stack-two {
-    font-weight: 500;
-    font-size: clamp(18px, 10vw, 75px);
+    line-height: 1;
 }
 
 /* Inline nav under the title (hard-coded links) */
@@ -76,12 +72,11 @@
 
     background-color: transparent;
     color: white;
-    text-shadow: 1px 1px 1px rgb(86, 86, 86);
 
-    font-weight: 800;
+    font-weight: 1000;
     /* title is clamp(28px, 15vw, 100px); links a touch smaller */
     font-size: clamp(22px, 12vw, 80px);
-    line-height: 1.1;
+    line-height: 1.50;
     letter-spacing: 0.2px;
     text-decoration-line: none;
 
@@ -99,7 +94,7 @@
 
 /* Hover/Focus highlight */
 .landing-nav-link:hover {
-    color: var(--yinmn-blue);
+    color: rgb(111, 207, 255);
 }
 
 /* ===== Mobile tweaks: center title and nav ===== */
@@ -118,10 +113,11 @@
 
         text-align: center;
         transform: translateX(-50%);
+        color: white;
     }
 
     .landing-nav {
-        bottom: 20px;
+        bottom: 50px;
         left: 50%;
         right: auto;
 
@@ -142,4 +138,27 @@
 
         border-radius: 10px;
     }
+}
+
+@media (max-height: 700px) {
+    .landing-hero-title {
+        top: 16px;
+        left: 50%;
+        right: auto;
+
+        margin: 0px;
+
+        text-align: center;
+        transform: translateX(-50%);
+        font-size: 20vw;
+    }
+
+    .landing-nav {
+        gap: 0px;
+    }
+
+    .landing-nav-link {
+        line-height: 1;
+    }
+
 }
