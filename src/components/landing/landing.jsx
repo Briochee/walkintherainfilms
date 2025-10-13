@@ -1,8 +1,10 @@
 import React from "react";
 import "./landing.css";
-import heroUrl from "../../assets/images/landing-hero.png";
 
 export default function Landing() {
+
+  const heroUrl = "https://github.com/Briochee/walkintherainfilms/blob/main/src/assets/images/landing-hero.png?raw=true";
+
   return (
     <section className="landing-hero" role="region" aria-label="Landing hero">
       <div
