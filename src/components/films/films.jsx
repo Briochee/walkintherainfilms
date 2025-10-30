@@ -69,7 +69,7 @@ const films = [
         thumbZoom: 1.0,
         inside: {
             kind: "embed",
-            src: "https://www.youtube-nocookie.com/embed/B_Lmd_BI7Do?si=pDGvexXziBmpy0Gd&amp;controls=0",
+            src: "https://www.youtube-nocookie.com/embed/B_Lmd_BI7Do?si=pDGvexXziBmpy0Gd&amp;controls=0&start=5",
             title: "Film sample",
             aspect: "56.25%",
             position: "center center",
@@ -205,6 +205,18 @@ export default function Films({ registerClose }) {
                                 <div className="film-inline-info" style={{ background: avg }}>
                                     <h3 className="film-inline-title">{film.title}</h3>
                                     <p className="film-inline-desc">{film.description}</p>
+                                    <div className="film-inline-links">
+                                        {film.credits.map((l, i) => (
+                                            <p key={i} className="film-inline-credit-line">
+                                                <span className="film-inline-credit-after">{l.label}</span>
+                                                {l.after ? (
+                                                    <a href={l.href} target="_blank" rel="noreferrer" className="film-inline-credit-link">
+                                                        {l.after}
+                                                    </a>
+                                                ) : null}
+                                            </p>
+                                        ))}
+                                    </div>
                                 </div>
                             )}
 
@@ -279,7 +291,7 @@ export default function Films({ registerClose }) {
                                         loading="lazy"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                         allowFullScreen
-                                        referrerpolicy="strict-origin-when-cross-origin"
+                                        referrerPolicy="strict-origin-when-cross-origin"
                                     />
                                 )}
 

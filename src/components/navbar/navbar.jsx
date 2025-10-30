@@ -45,7 +45,7 @@ export default function Navbar({ currentRoute, onNavigate }) {
             className={`nav-link ${isActive ? "active" : ""}`}
             onClick={() => onNavigate(to)}
         >
-            <img className={`nav-icon ${isActive ? "active" : ""}`} src={icon} alt="" aria-hidden="true" />
+            {/* <img className={`nav-icon ${isActive ? "active" : ""}`} src={icon} alt="" aria-hidden="true" /> */}
             <span className="nav-text">{label}</span>
         </button>
     );

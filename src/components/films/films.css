@@ -277,7 +277,20 @@ canvas {
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: bold;
-    padding-bottom: 40px;
+}
+
+.film-inline-credit-line {
+    font-size: .90em;
+}
+
+.film-inline-credit-link {
+    color: #97d8f4;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.film-inline-credit-link:hover {
+    color: var(--glaucous);
 }
 
 .film-row-hint {
@@ -285,14 +298,17 @@ canvas {
     right: 24px;
     bottom: 24px;
     margin: 0;
-    font-size: clamp(12px, 2.8vw, 16px);
+    font-size: clamp(12px, 2.5vw, 14px);
     font-weight: 600;
     color: #fff;
-    background: rgba(0, 0, 0, 0.5);
     padding: 6px 10px;
     border-radius: 8px;
     pointer-events: none;
     z-index: 1;
+    text-shadow:
+        0 1px 2px rgba(0, 0, 0, .2),
+        0 2px 6px rgba(0, 0, 0, .2),
+        0 6px 16px rgba(0, 0, 0, .2);
 }
 
 .film-arrow {
@@ -433,5 +449,9 @@ canvas {
     .film-inline-desc {
         font-size: clamp(13px, 4vw, 15px);
         max-height: 45vh;
+    }
+
+    .film-inline-credit-line {
+        padding-bottom: 35px;
     }
 }
