@@ -69,7 +69,7 @@ const films = [
         thumbZoom: 1.0,
         inside: {
             kind: "embed",
-            src: "https://www.youtube-nocookie.com/embed/B_Lmd_BI7Do?si=pDGvexXziBmpy0Gd&amp;controls=0&start=5",
+            src: "https://www.youtube-nocookie.com/embed/tQyAJHpr_B0?si=96LxLFQQqMcbeVch&amp;controls=0&amp;start=7&modestbranding=1&rel=0&iv_load_policy=3&ytp-chrome-top=0",
             title: "Film sample",
             aspect: "56.25%",
             position: "center center",
