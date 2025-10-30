@@ -70,6 +70,8 @@
 	--focus-ring: var(--mono-100);
 	/* high-contrast focus outline */
 	--border: color-mix(in oklab, var(--text) 16%, transparent);
+
+	--off-white-bg: #F2F0EF;
 }
 
 html {

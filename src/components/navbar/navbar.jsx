@@ -1,62 +1,62 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./navbar.css";
 
+// Icons
+import homeIcon from "../../assets/icons/home.png";
+import filmIcon from "../../assets/icons/film.png";
+import newsIcon from "../../assets/icons/news.png";
+import infoIcon from "../../assets/icons/information.png";
+
 export default function Navbar({ currentRoute, onNavigate }) {
     const [open, setOpen] = useState(false);
     const menuRef = useRef(null);
     const buttonRef = useRef(null);
 
-    // Click outside header controls (desktop safety)
+    // Close menu on outside click (when open)
     useEffect(() => {
         function handleDocumentClick(e) {
+            if (!open) return;
             const menu = menuRef.current;
             const button = buttonRef.current;
             if (!menu || !button) return;
-            // If overlay is not open, ignore
-            if (!open) return;
-            // If click is outside both the menu and the hamburger, close
-            if (!menu.contains(e.target) && !button.contains(e.target)) {
-                setOpen(false);
-            }
+            if (!menu.contains(e.target) && !button.contains(e.target)) setOpen(false);
         }
         document.addEventListener("click", handleDocumentClick);
         return () => document.removeEventListener("click", handleDocumentClick);
     }, [open]);
 
     // Close on route change
-    useEffect(() => {
-        setOpen(false);
-    }, [currentRoute]);
+    useEffect(() => setOpen(false), [currentRoute]);
 
     // Close on Esc
     useEffect(() => {
-        function onKey(e) {
-            if (e.key === "Escape") setOpen(false);
-        }
+        function onKey(e) { if (e.key === "Escape") setOpen(false); }
         document.addEventListener("keydown", onKey);
         return () => document.removeEventListener("keydown", onKey);
     }, []);
 
-    function handleToggle() {
-        setOpen(prev => !prev);
-    }
-
-    // Close if user clicks the translucent background (but not inner list)
-    function handleOverlayClick(e) {
-        if (e.target === e.currentTarget) {
-            setOpen(false);
-        }
-    }
-
+    const handleToggle = () => setOpen(prev => !prev);
+    const handleOverlayClick = (e) => { if (e.target === e.currentTarget) setOpen(false); };
     const expanded = open ? "true" : "false";
 
+    // Helper to render a nav button with icon
+    const NavBtn = ({ to, icon, label, isActive }) => (
+        <button
+            className={`nav-link ${isActive ? "active" : ""}`}
+            onClick={() => onNavigate(to)}
+        >
+            <img className={`nav-icon ${isActive ? "active" : ""}`} src={icon} alt="" aria-hidden="true" />
+            <span className="nav-text">{label}</span>
+        </button>
+    );
+
     return (
-        <header 
+        <header
             className="nav-header"
             style={currentRoute === "#/" ? { display: "none" } : undefined}
         >
             <div className={currentRoute === "#/" ? "nav-inner" : "nav-inner-full"}>
-                {currentRoute === "#/" ? null : 
+                {currentRoute === "#/" ? null : (
                     <div
                         className="brand"
                         onClick={() => onNavigate("#/")}
@@ -66,7 +66,7 @@ export default function Navbar({ currentRoute, onNavigate }) {
                     >
                         <div className="brand-title">Walk in the Rain Films</div>
                     </div>
-                }
+                )}
 
                 <button
                     ref={buttonRef}
@@ -89,30 +89,30 @@ export default function Navbar({ currentRoute, onNavigate }) {
                     onClick={handleOverlayClick}
                 >
                     <div className="nav-list">
-                        <button
-                            className={`nav-link ${currentRoute === "#/" ? "active" : ""}`}
-                            onClick={() => onNavigate("#/")}
-                        >
-                            Home
-                        </button>
-                        <button
-                            className={`nav-link ${currentRoute === "#/films" ? "active" : ""}`}
-                            onClick={() => onNavigate("#/films")}
-                        >
-                            Films
-                        </button>
-                        <button
-                            className={`nav-link ${currentRoute === "#/newsandreviews" ? "active" : ""}`}
-                            onClick={() => onNavigate("#/newsandreviews")}
-                        >
-                            News & Reviews
-                        </button>
-                        <button
-                            className={`nav-link ${currentRoute === "#/about" ? "active" : ""}`}
-                            onClick={() => onNavigate("#/about")}
-                        >
-                            About
-                        </button>
+                        <NavBtn
+                            to="#/"
+                            icon={homeIcon}
+                            label="Home"
+                            isActive={currentRoute === "#/"}
+                        />
+                        <NavBtn
+                            to="#/films"
+                            icon={filmIcon}
+                            label="Films"
+                            isActive={currentRoute === "#/films"}
+                        />
+                        <NavBtn
+                            to="#/newsandreviews"
+                            icon={newsIcon}
+                            label="News & Reviews"
+                            isActive={currentRoute === "#/newsandreviews"}
+                        />
+                        <NavBtn
+                            to="#/about"
+                            icon={infoIcon}
+                            label="About"
+                            isActive={currentRoute === "#/about"}
+                        />
                     </div>
                 </nav>
             </div>

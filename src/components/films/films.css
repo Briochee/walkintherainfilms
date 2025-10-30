@@ -1,22 +1,17 @@
-/* ===== FULL-SCREEN FILMS PAGE ===== */
-
-/* Hide color-thief canvas elements */
 canvas {
     display: none;
 }
 
-/* ===== Page Structure ===== */
 .films-wrap {
     width: 100vw;
     max-width: none;
     margin: 0;
     padding: 0;
-    background-color: transparent;
+    background: transparent;
     border-radius: 0;
     box-sizing: border-box;
 }
 
-/* Section title (optional, under navbar) */
 .films-title {
     position: absolute;
     top: 64px;
@@ -27,7 +22,7 @@ canvas {
     color: var(--text);
     z-index: 2;
     padding: 6px 10px;
-    background-color: color-mix(in oklab, var(--surface-a0) 65%, transparent);
+    background: color-mix(in oklab, var(--surface-a0) 65%, transparent);
     border: 1px solid var(--surface-tonal-a20);
     border-radius: 8px;
 }
@@ -36,37 +31,30 @@ canvas {
     display: none;
 }
 
-/* ===== Scroll Container (desktop) ===== */
 .films-list {
     display: block;
     height: calc(100vh - 64px);
     overflow-y: scroll;
     overflow-x: hidden;
-
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
 }
 
-/* Each full-screen section */
 .film-row {
     position: relative;
     width: 100%;
     height: calc(100vh - 64px);
     display: block;
-
     background: transparent;
-    border: none;
+    border: 0;
     border-radius: 0;
     padding: 0;
-
     text-align: left;
     color: var(--text);
     cursor: pointer;
-
     scroll-snap-align: start;
     scroll-snap-stop: always;
-
     transition: background-size 0.4s ease;
 }
 
@@ -75,7 +63,6 @@ canvas {
     box-shadow: inset 0 0 0 3px var(--primary-a30);
 }
 
-/* Thumbnail (full-bleed background) */
 .film-thumb {
     position: absolute;
     inset: 0;
@@ -88,7 +75,6 @@ canvas {
     transition: background-size 0.4s ease;
 }
 
-/* Title overlay */
 .film-row-title {
     position: absolute;
     left: 24px;
@@ -96,26 +82,23 @@ canvas {
     margin: 0;
     font-size: clamp(20px, 40px, 42px);
     font-weight: 800;
-    color: white;
+    color: #fff;
     padding: 6px 10px;
     z-index: 1;
 }
 
-/* ===== Modal Overlay & Body ===== */
 .film-modal-overlay {
     position: fixed;
     top: 64px;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: color-mix(in oklab, var(--modal-bg, #000) 90%, transparent);
+    background: color-mix(in oklab, var(--modal-bg, #000) 90%, transparent);
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     padding: 16px;
     z-index: 1100;
 }
@@ -123,9 +106,8 @@ canvas {
 .film-modal {
     width: 100%;
     max-width: 1200px;
-    background-color: var(--surface-a10);
+    background: var(--surface-a10);
     color: var(--text);
-
     display: flex;
     flex-direction: column;
     max-height: calc(100vh - 64px - 40px);
@@ -143,12 +125,10 @@ canvas {
     right: 25px;
     width: 52px;
     height: 52px;
-    font-size: 40px;
     line-height: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 25px;
     background: rgba(0, 0, 0, 0.6);
     color: #fff;
     border: none;
@@ -166,16 +146,9 @@ canvas {
     display: block;
     width: 26px;
     height: 2px;
-    background-color: white;
-
-    margin-top: 3px;
-    margin-bottom: 3px;
-    margin-left: 0px;
-    margin-right: 0px;
-
-    transition-property: transform, opacity, width;
-    transition-duration: 200ms;
-    transition-timing-function: ease;
+    background: #fff;
+    margin: 3px 0;
+    transition: transform 200ms ease, opacity 200ms ease, width 200ms ease;
 }
 
 .films-bar-top {
@@ -192,19 +165,18 @@ canvas {
     height: 0;
     padding-bottom: var(--media-aspect, 56.25%);
     overflow: hidden;
-    background-color: #000;
+    background: #000;
 }
 
 .aspect-fill-image,
 .aspect-fill-video,
 .aspect-fill-embed {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
+    border: 0;
     width: 100%;
     height: 100%;
-    border: 0;
-    background-color: #000;
+    background: #000;
     object-fit: cover;
 }
 
@@ -212,7 +184,6 @@ canvas {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    background-color: #000;
 }
 
 .film-media-placeholder {
@@ -221,7 +192,7 @@ canvas {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--surface-tonal-a10);
+    background: var(--surface-tonal-a10);
     border: 1px dashed var(--surface-tonal-a30);
     border-radius: 8px;
 }
@@ -231,16 +202,16 @@ canvas {
 }
 
 .film-modal-body {
-    background-color: color-mix(in oklab, var(--modal-bg, #000) 90%, transparent);
-    padding: 12px 16px 16px 16px;
+    background: color-mix(in oklab, var(--modal-bg, #000) 90%, transparent);
+    padding: 12px 16px 16px;
 }
 
 .film-description {
     font-size: large;
     font-weight: bold;
-    margin: 0 0 12px 0;
+    margin: 0 0 12px;
     padding: 0 10px;
-    color: white;
+    color: #fff;
 }
 
 .film-credits,
@@ -253,7 +224,7 @@ canvas {
 
 .film-credit-line,
 .film-link-line {
-    margin: 0 0 6px 0;
+    margin: 0 0 6px;
 }
 
 .film-credit-link {
@@ -267,11 +238,11 @@ canvas {
 }
 
 .film-credit-after {
-    color: white;
+    color: #fff;
 }
 
 .film-link {
-    color: white;
+    color: #fff;
     text-decoration: underline;
     text-underline-offset: 2px;
 }
@@ -280,10 +251,101 @@ canvas {
     color: var(--primary-a20);
 }
 
-/* ===== MOBILE FULL-BLEED FIXES ===== */
-@media (max-width: 768px) {
+.film-inline-info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: #fff;
+    padding: 14px 16px 16px;
+    display: grid;
+    gap: 6px;
+    box-sizing: border-box;
+}
 
-    /* Disable snap and allow normal scrolling */
+.film-inline-title {
+    margin: 0;
+    font-size: clamp(20px, 40px, 42px);
+    font-weight: 800;
+}
+
+.film-inline-desc {
+    margin: 0;
+    font-size: clamp(14px, 2.8vw, 16px);
+    line-height: 1.4;
+    max-height: 40vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: bold;
+    padding-bottom: 40px;
+}
+
+.film-row-hint {
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+    margin: 0;
+    font-size: clamp(12px, 2.8vw, 16px);
+    font-weight: 600;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 6px 10px;
+    border-radius: 8px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.film-arrow {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(225, 225, 225, 0.55);
+    backdrop-filter: blur(4px);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    z-index: 5;
+    transition: transform 120ms ease, background 150ms ease, opacity 150ms ease;
+}
+
+.film-arrow img {
+    width: 22px;
+    height: 22px;
+    pointer-events: none;
+    user-select: none;
+}
+
+.film-arrow:hover {
+    background: rgba(245, 245, 245, 0.18);
+}
+
+.film-arrow--top {
+    top: 16px;
+    transform: translateX(-50%) rotate(180deg);
+}
+
+.film-arrow--bottom {
+    bottom: 16px;
+}
+
+@media (max-width: 480px) {
+    .film-arrow {
+        width: 42px;
+        height: 42px;
+    }
+
+    .film-arrow img {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 768px) {
     .films-list {
         scroll-snap-type: none;
         overflow-y: auto;
@@ -295,7 +357,6 @@ canvas {
         position: relative;
         width: 100%;
         min-height: calc(100dvh - 64px);
-        /* fill mobile screen */
         scroll-snap-align: none;
         overflow: hidden;
         transform: translateZ(0);
@@ -311,14 +372,16 @@ canvas {
         filter: brightness(0.9);
     }
 
+    /* Title centered at bottom */
     .film-row-title {
-        left: 16px;
-        bottom: 25px;
+        left: 50%;
+        right: auto;
+        bottom: 95px;
+        transform: translateX(-50%);
         font-size: clamp(20px, 10vw, 28px);
-        font-weight: bolder;
-        border-radius: 8px;
-        padding: 4px 8px;
-        line-height: 1.2;
+        text-align: center;
+        padding: 40px 2px;
+        white-space: normal;
     }
 
     .films-list::after {
@@ -344,21 +407,31 @@ canvas {
         bottom: calc(24px + env(safe-area-inset-bottom));
         left: 50%;
         transform: translateX(-50%);
-        width: 52px;
-        height: 52px;
-        font-size: 40px;
-        line-height: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        background: rgba(0, 0, 0, 0.6);
-        color: #fff;
-        border: none;
-        border-radius: 50%;
-        backdrop-filter: blur(6px);
-        cursor: pointer;
         z-index: 2000;
-        transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+    .film-row-hint {
+        left: 50%;
+        right: auto;
+        bottom: 72px;
+        transform: translateX(-50%);
+        text-align: center;
+        padding: 6px 10px;
+        max-width: 86vw;
+        line-height: 1.25;
+        font-size: clamp(12px, 3.5vw, 14px);
+    }
+
+    .film-inline-info {
+        padding: 10px 12px 12px;
+    }
+
+    .film-inline-title {
+        font-size: clamp(18px, 6vw, 24px);
+    }
+
+    .film-inline-desc {
+        font-size: clamp(13px, 4vw, 15px);
+        max-height: 45vh;
     }
 }
