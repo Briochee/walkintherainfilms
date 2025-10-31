@@ -30,7 +30,7 @@ const films = [
         description: `Choreographer Stephen Petronio burst onto the scene at the beginning of the AIDS crisis, creating dances with unabashed sexuality that blurred gender lines and laid the ground for generations of dance-makers to come. As a massive backlash against gay and trans rights rocks the country today, Stephen leads his 40-year company to their final performances.`,
         credits: [
             {
-                label: "Cover photo: Stephen in corset — Chris Nash",
+                label: "Photo: Chris Nash",
                 href: "https://www.chrisnashphoto.com",
                 after: " @chrisnash_dancephotography",
             },
